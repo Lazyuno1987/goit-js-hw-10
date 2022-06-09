@@ -13,7 +13,10 @@ const countryContejner = document.querySelector('.country-info');
 function onInputSearch(ev) {
   onClearInput();
   const input = ev.target.value.trim();
-  fetchCountries(input).then(response => {
+  if (input === "") {
+    return
+    
+  } fetchCountries(input).then(response => {
     if (response.length === 1) {
       countryCardRender(response);
     }
@@ -23,6 +26,7 @@ function onInputSearch(ev) {
     if (response.length > 10) {
       Notify.info('Too many matches found. Please enter a more specific name.');
     }
+    
   });
 }
 
